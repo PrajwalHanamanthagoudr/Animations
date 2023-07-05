@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstromeTest</title>
+  <style>
+    .container {
+      height: 250px;
+      width: 600px;
+      background-color: #000128;
+      display: flex;
+      align-items: flex-end; /* Align items at the bottom */
+      justify-content: center;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding:30px ;
+    }
+    button {
+      width: 100px;
+      height: 50px;
+      border-radius: 2px;
+      color: white;
+      border: none;
+      margin-left: 50px;
+    }
+
+    .square {
+      width: 100px;
+      transition: height .5s;
+      overflow: hidden; /* Hide overflow to maintain fixed height */
+      height: 200px;
+      margin-bottom: 25px;
+    }
+
+    #blue {
+      background-color: #7d58b5;
+    }
+
+    #purple {
+      background-color: #d84d92;
+    }
+
+    #pink {
+      background-color: #fc6884;
+    }
+
+    #orange {
+      background-color: #fa8e6b;
+    }
+
+    #yellow {
+      background-color: #fbc655;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="blue" class="square"></div>
+    <div id="purple" class="square"></div>
+    <div id="pink" class="square"></div>
+    <div id="orange" class="square"></div>
+    <div id="yellow" class="square"></div>
+  </div>
+
+  <div class="controls">
+    <button style="background-color: #008055;" onclick="startAnimation()">Start</button>
+    <button style="background-color: #714cc0;" onclick="resetAnimation()">Reset</button>
+    <button style="background-color: #ea0700;" onclick="stopAnimation()">Stop</button>
+  </div>
+
+  <script>
+    var squares = document.getElementsByClassName("square");
+    var animationInterval;
+
+    function startAnimation() {
+      resetAnimation(); // Reset the animation before starting
+      animationInterval = setInterval(function() {
+        Array.from(squares).forEach(function(square) {
+          var height = Math.floor(Math.random() * 150) + 50; // Random height between 50 and 200
+          square.style.height = height + "px";
+        });
+      }, 1000);
+    }
+
+    function stopAnimation() {
+      clearInterval(animationInterval);
+    }
+
+    function resetAnimation() {
+      clearInterval(animationInterval); // Stop the animation
+      Array.from(squares).forEach(function(square) {
+        square.style.height = "200px"; // Reset the height to initial value
+      });
+    }
+  </script>
+</body>
+</html>
